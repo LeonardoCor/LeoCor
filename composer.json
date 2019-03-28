@@ -1,0 +1,10 @@
+{
+    "authors":  [
+        {
+            "name":     "Leonardo Corazzi",
+            "email":    "leonardo.corazzi@outlook.it",
+            "role":     "Developer"
+        }
+    ],
+    "license":  "proprietary"
+}
