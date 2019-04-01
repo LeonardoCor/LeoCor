@@ -1,5 +1,4 @@
 <?php
-
 /*
  * Copyright (C) 2019 Leonardo Corazzi <leonardo.corazzi@outlook.it>
  *
@@ -17,24 +16,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 namespace LeoCor\Data;
+
 /**
  * Validation and sanitization of data.
  *
  * @author Leonardo Corazzi <leonardo.corazzi@outlook.it>
  */
-abstract class Filter {
+abstract class Filter
+{
     protected $data;
     
-    public function __construct($data) {
+    public function __construct($data)
+    {
         $this->data = $data;
     }
-    
-    /**
-     * Asserts data being valid or not.
-     * 
-     * @return bool
-     */
-    abstract public function validate(): bool;
     
     /**
      * Restore all filter options to their default value.
@@ -43,5 +38,17 @@ abstract class Filter {
      */
     abstract public function reset(): void;
     
+    /**
+     * Retrieves a list of all current option flags.
+     * 
+     * @return array
+     */
     abstract public function getOptions(): array;
+    
+    /**
+     * Asserts data being valid or not.
+     * 
+     * @return bool
+     */
+    abstract public function validate(): bool;
 }

@@ -1,5 +1,4 @@
 <?php
-
 /*
  * Copyright (C) 2019 Leonardo Corazzi <leonardo.corazzi@outlook.it>
  *
@@ -17,30 +16,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 namespace LeoCor\Data;
+
 /**
  * Set of string filters.
+ * 
+ * Default options:
+ * * _No\_Encode\_Quotes_: __true__
  *
  * @author Leonardo Corazzi <leonardo.corazzi@outlook.it>
  */
-class StringFilter extends Filter {
+class StringFilter extends Filter
+{
     private $fltNoEncodeQuotes = true;
     
-    public function reset(): void {
+    public function reset(): void
+    {
         $this->fltNoEncodeQuotes = true;
     }
     
-    /**
-     * Quotes encoding.
-     * 
-     * If this flag is present, single (') and double (") quotes will not be encoded.
-     * @param bool $flag
-     * @return void
-     */
-    public function noEncodeQuotes(bool $flag): void {
-        $this->fltNoEncodeQuotes = $flag;
-    }
-    
-    public function getOptions(): array {
+    public function getOptions(): array
+    {
         $flags = 0;
         if ($this->fltNoEncodeQuotes) {
             $flags = FILTER_FLAG_NO_ENCODE_QUOTES;
@@ -56,17 +51,32 @@ class StringFilter extends Filter {
      * 
      * @return bool
      */
-    public function validate(): bool {
+    public function validate(): bool
+    {
         return is_string($this->data);
     }
     
-    public function sanitize(): string {
+    /**
+     * Quotes encoding.
+     * 
+     * If this flag is present, single (') and double (") quotes will not
+     * be encoded.
+     * @param bool $flag
+     * @return void
+     */
+    public function noEncodeQuotes(bool $flag): void
+    {
+        $this->fltNoEncodeQuotes = $flag;
+    }
+    
+    public function sanitize(): string
+    {
         if (!is_string($this->data)) {
             return "";
         }
         
         $options = $this->getOptions();
-        $sanitized = filter_var($this->data, FILTER_DEFAULT, $options);
+        $sanitized = filter_var($this->data, FILTER_SANITIZE_STRING, $options);
         return $sanitized;
     }
 }

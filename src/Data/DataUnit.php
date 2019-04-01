@@ -1,5 +1,4 @@
 <?php
-
 /*
  * Copyright (C) 2019 Leonardo Corazzi
  *
@@ -17,12 +16,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 namespace LeoCor\Data;
+
 /**
  * Description of DataUnit
  *
  * @author Leonardo Corazzi <leonardo.corazzi@outlook.it>
  */
-class DataUnit {
+class DataUnit
+{
     /**
      * @var string
      */
@@ -39,17 +40,20 @@ class DataUnit {
      * @param string $name
      * @param mixed $value
      */
-    public function __construct(string $name, $value = null) {
+    public function __construct(string $name, $value = null)
+    {
         $this->name = $name;
         $this->value = $value;
     }
     
-    public function __toString() {
+    public function __toString()
+    {
         $strVal = (string) $this->value;
         return $strVal;
     }
     
-    public function getValue() {
+    public function getValue()
+    {
         return $this->value;
     }
 }

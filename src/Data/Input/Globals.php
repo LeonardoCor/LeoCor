@@ -1,5 +1,4 @@
 <?php
-
 /*
  * Copyright (C) 2019 Leonardo Corazzi
  *
@@ -17,12 +16,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 namespace LeoCor\Data\Input;
+
 /**
  * Description of Globals
  *
  * @author Leonardo Corazzi <leonardo.corazzi@outlook.it>
  */
-class Globals {
+class Globals
+{
     /**
      * @var Globals
      */
@@ -35,7 +36,8 @@ class Globals {
     /**
      * Constructor.
      */
-    private function __construct() {}
+    private function __construct()
+    {}
     
     /**
      * Returns single instance.
@@ -43,7 +45,8 @@ class Globals {
      * __*Singleton*__.
      * @return Globals;
      */
-    public function getInstance() {
+    public function getInstance()
+    {
         if (is_null($this->instance)) {
             $this->instance = new Globals();
         }
