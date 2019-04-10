@@ -8,48 +8,29 @@ class StringFilterTest extends TestCase {
      * @var StringFilter
      */
     protected $object;
-    /**
-     *
-     * @var StringFilter
-     */
-    protected $objectHtml;
 
     protected function setUp(): void
     {
-        $this->object       = new StringFilter("'Prova\"&`");
-        $this->objectHtml   = new StringFilter("<html>\"&`'");
-    }
-    
-    public function stringProvider()
-    {
-        $strings = [
-            [
-                [
-                    "'Prova\"&`", "&#39;Prova&#34;&`", "'Prova\"&#38;`",
-                    "'Prova\"&"
-                ]
-            ]
-        ];
-        return $strings;
-    }
-    
-    public function stringHtmlProvider()
-    {
-        $strings = [
-            [
-                [
-                    "'Prova\"&`", "&#39;Prova&#34;&`", "'Prova\"&#38;`",
-                    "'Prova\"&"
-                ]
-            ]
-        ];
-        return $strings;
+        $this->object   = new StringFilter("<html>\"&`'>prova<");
     }
     
     public function testGetOptions()
     {
-        $flags = ['flags' => FILTER_FLAG_NO_ENCODE_QUOTES];
-        $this->assertSame($this->object->getOptions(), $flags);
+        $key_flags = 'flags';
+        $expectedOpt = ['flags' => FILTER_FLAG_NO_ENCODE_QUOTES];
+        $this->assertSame($expectedOpt, $this->object->getOptions(), "NEQ");
+        $this->object->setFlagEncodeAmp(true);
+        $expectedOpt[$key_flags] |= FILTER_FLAG_ENCODE_AMP;
+        $this->assertSame($expectedOpt, $this->object->getOptions(), "NEQ + AMP");
+        $this->object->setFlagEncodeQuotes(true);
+        $expectedOpt[$key_flags] = FILTER_FLAG_ENCODE_AMP;
+        $this->assertSame($expectedOpt, $this->object->getOptions(), "AMP");
+        $this->object->setFlagStripBacktick(true);
+        $expectedOpt[$key_flags] |= FILTER_FLAG_STRIP_BACKTICK;
+        $this->assertSame($expectedOpt, $this->object->getOptions(), "AMP + BT");
+        $this->object->setFlagEncodeAmp(false);
+        $expectedOpt[$key_flags] = FILTER_FLAG_STRIP_BACKTICK;
+        $this->assertSame($expectedOpt, $this->object->getOptions(), "BT");
     }
     
     /**
@@ -57,9 +38,16 @@ class StringFilterTest extends TestCase {
      */
     public function testSetFlagNoEncodeQuotes()
     {
-        $this->object->setFlagNoEncodeQuotes(false);
-        $flags = ['flags' => 0];
-        $this->assertSame($this->object->getOptions(), $flags);
+        $this->object->setFlagEncodeQuotes(true);
+        $this->assertSame(
+            0,
+            $this->object->getOptions()['flags']
+        );
+        $this->object->setFlagEncodeQuotes(false);
+        $this->assertSame(
+            FILTER_FLAG_NO_ENCODE_QUOTES,
+            $this->object->getOptions()['flags']
+        );
     }
     
     /**
@@ -67,9 +55,17 @@ class StringFilterTest extends TestCase {
      */
     public function testSetFlagEncodeAmp()
     {
-        $flags = ['flags' => FILTER_FLAG_NO_ENCODE_QUOTES | FILTER_FLAG_ENCODE_AMP];
+        $this->object->setFlagEncodeQuotes(true);
         $this->object->setFlagEncodeAmp(true);
-        $this->assertSame($this->object->getOptions(), $flags);
+        $this->assertSame(
+            FILTER_FLAG_ENCODE_AMP,
+            $this->object->getOptions()['flags']
+        );
+        $this->object->setFlagEncodeAmp(false);
+        $this->assertSame(
+            0,
+            $this->object->getOptions()['flags']
+        );
     }
     
     /**
@@ -77,9 +73,17 @@ class StringFilterTest extends TestCase {
      */
     public function testSetFlagStripBacktick()
     {
-        $flags = ['flags' => FILTER_FLAG_NO_ENCODE_QUOTES | FILTER_FLAG_STRIP_BACKTICK];
+        $this->object->setFlagEncodeQuotes(true);
         $this->object->setFlagStripBacktick(true);
-        $this->assertSame($this->object->getOptions(), $flags);
+        $this->assertSame(
+            FILTER_FLAG_STRIP_BACKTICK,
+            $this->object->getOptions()['flags']
+        );
+        $this->object->setFlagStripBacktick(false);
+        $this->assertSame(
+            0,
+            $this->object->getOptions()['flags']
+        );
     }
     
     /**
@@ -92,12 +96,25 @@ class StringFilterTest extends TestCase {
         $expectedOpts = ['flags' => FILTER_FLAG_NO_ENCODE_QUOTES];
         
         $this->object->setFlagEncodeAmp(true);
-        $this->object->setFlagNoEncodeQuotes(false);
+        $this->object->setFlagEncodeQuotes(true);
         $this->object->setFlagStripBacktick(true);
         $this->assertNotSame($this->object->getOptions(), $expectedOpts);
         
         $this->object->reset();
         $this->assertSame($this->object->getOptions(), $expectedOpts);
+    }
+    
+    public function stringProvider()
+    {
+        $strings = [
+            [
+                [
+                    "\"&`'>prova", "&#34;&`&#39;>prova",
+                    "\"&#38;`'>prova", "\"&'>prova"
+                ]
+            ]
+        ];
+        return $strings;
     }
     
     /**
@@ -106,13 +123,9 @@ class StringFilterTest extends TestCase {
      */
     public function testSanitize($expectedStrings)
     {
-        $this->assertSame(
-            $this->object->getOptions(),
-            ['flags' => FILTER_FLAG_NO_ENCODE_QUOTES]
-        );
         $this->assertSame($expectedStrings[0], $this->object->sanitize());
         
-        $this->object->setFlagNoEncodeQuotes(false);
+        $this->object->setFlagEncodeQuotes(true);
         $this->assertSame($expectedStrings[1], $this->object->sanitize());
         
         $this->object->reset();
@@ -129,9 +142,129 @@ class StringFilterTest extends TestCase {
         $this->assertTrue($this->object->validate());
     }
     
-    public function testSanitizeSpecialCharsToHtml()
+    public function sanitizeHtmlProvider()
     {
-        $sanitized = $this->objectHtml->sanitizeSpecialCharsToHtml();
-        $this->assertSame($expected, $sanitized);
+        $data = [
+            [
+                [
+                    'base'      => "&#60;html&#62;&#34;&#38;`&#39;&#62;prova&#60;",
+                    'strip_bt'  => "&#60;html&#62;&#34;&#38;&#39;&#62;prova&#60;",
+                    'neq'       => "&lt;html&gt;\"&amp;`'&gt;prova&lt;",
+                    'full'      => "&lt;html&gt;&quot;&amp;`&#039;&gt;prova&lt;",
+                ]
+            ]
+        ];
+        return $data;
+    }
+    
+    /**
+     * @dataProvider sanitizeHtmlProvider
+     */
+    public function testSanitizeHtmlSpecialChars($expectedStrings)
+    {
+        $this->assertSame($expectedStrings['base'], $this->object->sanitizeHtmlSpecialChars());
+        $this->assertSame($expectedStrings['neq'], $this->object->sanitizeHtmlSpecialChars(true));
+        $this->object->setFlagEncodeQuotes(true);
+        $this->assertSame($expectedStrings['base'], $this->object->sanitizeHtmlSpecialChars());
+        $this->assertSame($expectedStrings['full'],  $this->object->sanitizeHtmlSpecialChars(true));
+        $this->object->setFlagEncodeAmp(true);
+        $this->assertSame($expectedStrings['base'], $this->object->sanitizeHtmlSpecialChars());
+        $this->assertSame($expectedStrings['full'], $this->object->sanitizeHtmlSpecialChars(true));
+        $this->object->setFlagStripBacktick(true);
+        $this->assertSame($expectedStrings['strip_bt'], $this->object->sanitizeHtmlSpecialChars());
+        $this->assertSame($expectedStrings['full'], $this->object->sanitizeHtmlSpecialChars(true));
+    }
+    
+    public function testAddSlashes()
+    {
+        $this->assertSame("<html>\\\"&`\\'>prova<",  $this->object->addSlashes());
+        $allChars = "\"'\\\0&`";
+        $expectedStr = "\\\"\\'\\\\\\0&`";
+        $strFlt = new StringFilter($allChars);
+        $this->assertSame($expectedStr, $strFlt->addSlashes());
+        $strFlt->setFlagEncodeQuotes(true);
+        $this->assertSame($expectedStr, $strFlt->addSlashes());
+        $strFlt->setFlagEncodeAmp(true);
+        $this->assertSame($expectedStr, $strFlt->addSlashes());
+        $strFlt->setFlagStripBacktick(true);
+        $this->assertSame($expectedStr, $strFlt->addSlashes());
+    }
+    
+    public function testSanitizeEmail()
+    {
+        $strFlt = new StringFilter("abc123DEF!#$%&'*+-=?^_`{|}~@.[]\"<>\\/:;,");
+        $expectedStr = "abc123DEF!#$%&'*+-=?^_`{|}~@.[]";
+        $this->assertSame($expectedStr, $strFlt->sanitizeEmail());
+        $strFlt->setFlagEncodeQuotes(true);
+        $this->assertSame($expectedStr, $strFlt->sanitizeEmail());
+        $strFlt->setFlagEncodeAmp(true);
+        $this->assertSame($expectedStr, $strFlt->sanitizeEmail());
+        $strFlt->setFlagStripBacktick(true);
+        $this->assertSame($expectedStr, $strFlt->sanitizeEmail());
+    }
+    
+    public function testSanitizeUrl()
+    {
+        $strFlt = new StringFilter("abc123DEF!#$%&'*+-=?^_`{|}~@.[]\"<>\\/:;,()");
+        $expectedStr = "abc123DEF!#$%&'*+-=?^_`{|}~@.[]\"<>\\/:;,()";
+        $this->assertSame($expectedStr, $strFlt->sanitizeUrl());
+        $strFlt->setFlagEncodeQuotes(true);
+        $this->assertSame($expectedStr, $strFlt->sanitizeUrl());
+        $strFlt->setFlagEncodeAmp(true);
+        $this->assertSame($expectedStr, $strFlt->sanitizeUrl());
+        $strFlt->setFlagStripBacktick(true);
+        $this->assertSame($expectedStr, $strFlt->sanitizeUrl());
+    }
+    
+    public function testUrlEncode()
+    {
+        $expected = [
+            "%3Chtml%3E%22%26%60%27%3Eprova%3C",
+            "%3Chtml%3E%22%26%27%3Eprova%3C"
+        ];
+        $this->assertSame($expected[0], $this->object->urlEncode());
+        $this->object->setFlagEncodeQuotes(true);
+        $this->assertSame($expected[0], $this->object->urlEncode());
+        $this->object->setFlagEncodeAmp(true);
+        $this->assertSame($expected[0], $this->object->urlEncode());
+        $this->object->setFlagStripBacktick(true);
+        $this->assertSame($expected[1], $this->object->urlEncode());
+    }
+    
+    public function testValidateEmail()
+    {
+        $strFlt = new StringFilter("kjgd@ksid`.lk");
+        $this->assertFalse($strFlt->validateEmail());
+        $strFlt->setFlagStripBacktick(true);
+        $this->assertFalse($strFlt->validateEmail());
+        $strFltOk = new StringFilter("dskl@por.qa");
+        $this->assertTrue($strFltOk->validateEmail());
+    }
+    
+    public function validateHostnameProvider()
+    {
+        $data = [
+            ["kdosd@oi.ig", [false, false, false, false]],
+            ["kdosd@oi", [false, false, false, false]],
+            ["kdosd#oi", [false, false, false, false]],
+            ["kdosd#oi\"'`&", [false, false, false, false]],
+            ["\"'`&", [false, false, false, false]],
+        ];
+        return $data;
+    }
+    
+    /**
+     * @dataProvider validateHostnameProvider
+     */
+    public function testValidateHostname($str, $expected)
+    {
+        $strFlt = new StringFilter($str);
+        $this->assertSame($expected[0], $strFlt->validateHostname());
+        $strFlt->setFlagEncodeQuotes(true);
+        $this->assertSame($expected[1], $strFlt->validateHostname());
+        $strFlt->setFlagEncodeAmp(true);
+        $this->assertSame($expected[2], $strFlt->validateHostname());
+        $strFlt->setFlagStripBacktick(true);
+        $this->assertSame($expected[3], $strFlt->validateHostname());
     }
 }

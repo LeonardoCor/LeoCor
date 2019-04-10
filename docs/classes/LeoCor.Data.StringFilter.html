@@ -114,12 +114,12 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">19</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">9</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="../reports/markers.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
                                 </a>
                             </li>
                             <li>
@@ -144,37 +144,37 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1553959833"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-686889671"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1553959833" class="accordion-body collapse in">
+            <div id="namespace-686889671" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1354604841"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-534204185"></a>
                                 <a href="../namespaces/LeoCor.html" style="margin-left: 30px; padding-left: 0">LeoCor</a>
             </div>
-            <div id="namespace-1354604841" class="accordion-body collapse ">
+            <div id="namespace-534204185" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1542636439"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-821977148"></a>
                                 <a href="../namespaces/LeoCor.Data.html" style="margin-left: 30px; padding-left: 0">Data</a>
             </div>
-            <div id="namespace-1542636439" class="accordion-body collapse ">
+            <div id="namespace-821977148" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-68299223"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2137672892"></a>
                                 <a href="../namespaces/LeoCor.Data.Input.html" style="margin-left: 30px; padding-left: 0">Input</a>
             </div>
-            <div id="namespace-68299223" class="accordion-body collapse ">
+            <div id="namespace-2137672892" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -192,6 +192,41 @@
                                                     <li class="class"><a href="../classes/LeoCor.Data.Filter.html">Filter</a></li>
                                                     <li class="class"><a href="../classes/LeoCor.Data.StringFilter.html">StringFilter</a></li>
                                             </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-69979205"></a>
+                                <a href="../namespaces/LeoCor.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-69979205" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2057178429"></a>
+                                <a href="../namespaces/LeoCor.Exception.Data.html" style="margin-left: 30px; padding-left: 0">Data</a>
+            </div>
+            <div id="namespace-2057178429" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/LeoCor.Exception.Data.NotAString.html">NotAString</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
                 </div>
             </div>
         </div>
@@ -226,11 +261,20 @@
 
                     <h1><small>\LeoCor\Data</small>StringFilter</h1>
                     <p><em>Set of string filters.</em></p>
-                    <p>Default options:</p>
+                    <p>Strings can be <em>sanitized</em>, that is they can be clean or char encoded depending
+on string use needs.</p>
+<p>For example, if a string has to be injected in a chunk
+of HTML code, it can be sanitized; this also prevents HTML injection of external
+malicious code.</p>
+<h3>Usage</h3>
+<p>A string has to be passed to <a href="../classes/LeoCor.Data.Filter.html#method___construct">constructor</a>.</p>
+<p>For sanitizing, same flags are provided with their default values:</p>
 <ul>
-<li><em>No_Encode_Quotes</em>: <strong>true</strong></li>
-<li><em>Encode_Amp</em>: <strong>false</strong></li>
+<li><em>Encode_Quotes</em>: <strong>false</strong>, enables single and double quotes encoding</li>
+<li><em>Encode_Amp</em>: <strong>false</strong>, performs ampersand encoding</li>
+<li><em>Strip_Backtick</em>: <strong>false</strong>, strips backticks (<code>`</code>)</li>
 </ul>
+<p>This flags can be set through the <em>setFalgXXX()</em> methods.</p>
                     
                                         
                     <section id="summary">
@@ -248,13 +292,19 @@
                         </section>
                         <section class="row-fluid public">
                             <section class="span4">
-                                                                    <a href="../classes/LeoCor.Data.Filter.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/LeoCor.Data.StringFilter.html#method___construct" class="">__construct()</a><br />
                                                                     <a href="../classes/LeoCor.Data.StringFilter.html#method_reset" class="">reset()</a><br />
                                                                     <a href="../classes/LeoCor.Data.StringFilter.html#method_getOptions" class="">getOptions()</a><br />
                                                                     <a href="../classes/LeoCor.Data.StringFilter.html#method_validate" class="">validate()</a><br />
-                                                                    <a href="../classes/LeoCor.Data.StringFilter.html#method_flagNoEncodeQuotes" class="">flagNoEncodeQuotes()</a><br />
-                                                                    <a href="../classes/LeoCor.Data.StringFilter.html#method_flagEncodeAmp" class="">flagEncodeAmp()</a><br />
+                                                                    <a href="../classes/LeoCor.Data.StringFilter.html#method_setFlagEncodeQuotes" class="">setFlagEncodeQuotes()</a><br />
+                                                                    <a href="../classes/LeoCor.Data.StringFilter.html#method_setFlagEncodeAmp" class="">setFlagEncodeAmp()</a><br />
+                                                                    <a href="../classes/LeoCor.Data.StringFilter.html#method_setFlagStripBacktick" class="">setFlagStripBacktick()</a><br />
                                                                     <a href="../classes/LeoCor.Data.StringFilter.html#method_sanitize" class="">sanitize()</a><br />
+                                                                    <a href="../classes/LeoCor.Data.StringFilter.html#method_sanitizeHtmlSpecialChars" class="">sanitizeHtmlSpecialChars()</a><br />
+                                                                    <a href="../classes/LeoCor.Data.StringFilter.html#method_addSlashes" class="">addSlashes()</a><br />
+                                                                    <a href="../classes/LeoCor.Data.StringFilter.html#method_sanitizeEmail" class="">sanitizeEmail()</a><br />
+                                                                    <a href="../classes/LeoCor.Data.StringFilter.html#method_sanitizeUrl" class="">sanitizeUrl()</a><br />
+                                                                    <a href="../classes/LeoCor.Data.StringFilter.html#method_urlEncode" class="">urlEncode()</a><br />
                                                             </section>
                             <section class="span4">
                                                                     <em>No public properties found</em>
@@ -276,11 +326,10 @@
                         </section>
                         <section class="row-fluid private">
                             <section class="span4">
-                                                                    <em>No private methods found</em>
+                                                                    <a href="../classes/LeoCor.Data.StringFilter.html#method_setFlag" class="">setFlag()</a><br />
                                                             </section>
                             <section class="span4">
-                                                                    <a href="../classes/LeoCor.Data.StringFilter.html#property_fltNoEncodeQuotes" class="">$fltNoEncodeQuotes</a><br />
-                                                                    <a href="../classes/LeoCor.Data.StringFilter.html#property_fltEncodeAmp" class="">$fltEncodeAmp</a><br />
+                                                                    <a href="../classes/LeoCor.Data.StringFilter.html#property_flags" class="">$flags</a><br />
                                                             </section>
                             <section class="span4">
                                 <em>N/A</em>
@@ -293,7 +342,7 @@
                     
                     <dl>
                         <dt>File</dt>
-                            <dd><a href="../files/StringFilter.html"><div class="path-wrapper">StringFilter.php</div></a></dd>
+                            <dd><a href="../files/Data.StringFilter.html"><div class="path-wrapper">Data\StringFilter.php</div></a></dd>
                                                 <dt>Package</dt>
                             <dd><div class="namespace-wrapper">Default</div></dd>
                                                 <dt>Class hierarchy</dt>
@@ -336,12 +385,12 @@
             <a id="property_data" name="property_data" class="anchor"></a>
             <article class="property">
                 <h3 class="protected ">$data</h3>
-                <pre class="signature">$data : </pre>
-                <p><em></em></p>
+                <pre class="signature">$data : mixed</pre>
+                <p><em>Data to be filtered.</em></p>
                 
 
                                 <h4>Type</h4>
-                
+                mixed
                                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -359,15 +408,15 @@
 
                                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_fltNoEncodeQuotes" name="property_fltNoEncodeQuotes" class="anchor"></a>
+            <a id="property_flags" name="property_flags" class="anchor"></a>
             <article class="property">
-                <h3 class="private ">$fltNoEncodeQuotes</h3>
-                <pre class="signature">$fltNoEncodeQuotes : </pre>
-                <p><em></em></p>
+                <h3 class="private ">$flags</h3>
+                <pre class="signature">$flags : integer</pre>
+                <p><em>Bitwise value of enabled flags</em></p>
                 
 
                                 <h4>Type</h4>
-                
+                integer
                                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -376,31 +425,14 @@
                                                             </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_fltEncodeAmp" name="property_fltEncodeAmp" class="anchor"></a>
-            <article class="property">
-                <h3 class="private ">$fltEncodeAmp</h3>
-                <pre class="signature">$fltEncodeAmp : </pre>
-                <p><em></em></p>
-                
-
-                                <h4>Type</h4>
-                
-                                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                                    <tr>
+                        <th>
+                            private
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
                             </table>
         </aside>
     </div>
@@ -418,19 +450,24 @@
             <article class="method">
                 <h3 class="public ">__construct()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">__construct(  <span class="argument">$data</span>) </pre>
-                <p><em></em></p>
-                
+                <pre class="signature" style="margin-right: 54px;">__construct(string  <span class="argument">$data</span>) </pre>
+                <p><em>Constructor.</em></p>
+                <p>Data is passed in the filter and stays unaltered.</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$data </td>
                                 <td></td>
                             </tr>
                                             </table>
                 
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\LeoCor\Exception\Data\NotAString</dt>
+                            <dd><p>Thrown if <strong>$data</strong> is not a string</p></dd>
+                                                                    </dl>
                 
                 
                             </article>
@@ -439,7 +476,7 @@
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
                                                     <dt>Inherited from</dt>
-                    <dd><a href="../classes/LeoCor.Data.Filter.html"><div class="path-wrapper">\LeoCor\Data\Filter</div></a></dd>
+                    <dd><a href="../classes/LeoCor.Data.StringFilter.html"><div class="path-wrapper">\LeoCor\Data\StringFilter</div></a></dd>
                                                             </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
@@ -455,7 +492,7 @@
                 <h3 class="public ">reset()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">reset() : void</pre>
-                <p><em>Restore all filter options to their default value.</em></p>
+                <p><em>Resets flags to their default values.</em></p>
                 
 
                 
@@ -483,8 +520,11 @@
                 <h3 class="public ">getOptions()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">getOptions() : array</pre>
-                <p><em>Retrieves a list of all current option flags.</em></p>
-                
+                <p><em>Provides the options needed for filtering.</em></p>
+                <p>The riturned array is so composed:</p>
+<ul>
+<li><em>flags</em> =&gt; (<strong>int</strong>) bitwise flags value</li>
+</ul>
 
                 
                 
@@ -513,7 +553,7 @@
                 <h3 class="public ">validate()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">validate() : boolean</pre>
-                <p><em>Asserts data being a String or not.</em></p>
+                <p><em>Asserts data being a string or not.</em></p>
                 
 
                 
@@ -538,14 +578,15 @@
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_flagNoEncodeQuotes" name="method_flagNoEncodeQuotes" class="anchor"></a>
+            <a id="method_setFlagEncodeQuotes" name="method_setFlagEncodeQuotes" class="anchor"></a>
             <article class="method">
-                <h3 class="public ">flagNoEncodeQuotes()</h3>
+                <h3 class="public ">setFlagEncodeQuotes()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">flagNoEncodeQuotes(boolean  <span class="argument">$flag</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px;">setFlagEncodeQuotes(boolean  <span class="argument">$flag</span>) : void</pre>
                 <p><em>Quotes encoding.</em></p>
-                <p>If this flag is present, single (') and double (&quot;) quotes will not
+                <p>If this flag is enabled, single (<code>'</code>) and double (<code>"</code>) quotes will
 be encoded.</p>
+<p>Default: <strong>false</strong>.</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -575,13 +616,51 @@ be encoded.</p>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_flagEncodeAmp" name="method_flagEncodeAmp" class="anchor"></a>
+            <a id="method_setFlagEncodeAmp" name="method_setFlagEncodeAmp" class="anchor"></a>
             <article class="method">
-                <h3 class="public ">flagEncodeAmp()</h3>
+                <h3 class="public ">setFlagEncodeAmp()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">flagEncodeAmp(boolean  <span class="argument">$flag</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px;">setFlagEncodeAmp(boolean  <span class="argument">$flag</span>) : void</pre>
                 <p><em>Ampersands encoding.</em></p>
-                <p>Encodes ampersands (&amp;).</p>
+                <p>Encodes ampersands (<code>&amp;</code>).</p>
+<p>Default: <strong>false</strong>.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$flag </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/LeoCor.Data.StringFilter.html"><div class="path-wrapper">\LeoCor\Data\StringFilter</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setFlagStripBacktick" name="method_setFlagStripBacktick" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setFlagStripBacktick()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setFlagStripBacktick(boolean  <span class="argument">$flag</span>) : void</pre>
+                <p><em>Backticks stripping.</em></p>
+                <p>Strips backticks (<code>`</code>) if enabled.</p>
+<p>Default: <strong>false</strong>.</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -615,10 +694,72 @@ be encoded.</p>
             <article class="method">
                 <h3 class="public ">sanitize()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">sanitize() </pre>
-                <p><em></em></p>
-                
+                <pre class="signature" style="margin-right: 54px;">sanitize() : string</pre>
+                <p><em>String sanitization.</em></p>
+                <p>Encodes in HTML entities, or strips, special chars, depending on option
+flags setting:</p>
+<ul>
+<li><code>'</code>, <code>"</code> will be encoded with <em>&#38;#39;</em> and <em>&#38;#34;</em>,
+if <code>Encode_Quotes</code> flag is enabled</li>
+<li><code>&amp;</code> will be encoded with <em>&#38;#38;</em>, if flag <code>Encode_Amp</code> is enabled</li>
+<li><code>`</code> will be <em>stripped</em>, if <code>Strip_Backtick</code> flag is enabled</li>
+</ul>
+<p>Always strips <em>tags</em> and <code>&lt;</code>.</p>
 
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/LeoCor.Data.StringFilter.html"><div class="path-wrapper">\LeoCor\Data\StringFilter</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_sanitizeHtmlSpecialChars" name="method_sanitizeHtmlSpecialChars" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">sanitizeHtmlSpecialChars()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">sanitizeHtmlSpecialChars(boolean  <span class="argument">$htmlStandard = false</span>) </pre>
+                <p><em>String sanitization of HTML special chars.</em></p>
+                <p>Sanitizes string like in <a href="../classes/LeoCor.Data.StringFilter.html#method_sanitize">\LeoCor\Data\StringFilter::sanitize()</a>
+plus <code>&lt;</code> and <code>&gt;</code>, except <code>`</code>.</p>
+<p>If <strong>$htmlStandard</strong> is <em>not</em> passed the expected behaviour is:</p>
+<ul>
+<li><code>&lt;</code>, <code>&gt;</code>, <code>"</code>, <code>'</code> and <code>&amp;</code> wil be replaced with <em>&#38;#60;</em>, <em>&#38;#62;</em>,
+<em>&#38;#34;</em>, <em>&#38;#39;</em> and <em>&#38;#38;</em>, regardless of <code>Encode_Quotes</code>
+and <code>Encode_Amp</code> flags</li>
+<li><code>`</code> will be <em>stripped</em> if <code>Strip_Backtick</code> flag is enabled</li>
+</ul>
+<p>If <strong>$htmlStandard</strong> is passed:</p>
+<ul>
+<li><code>&lt;</code>, <code>&gt;</code> will be replaced with <em>&#38;lt;</em>, <em>&#38;gt;</em></li>
+<li><code>&amp;</code> will be replaced with <em>&#38;amp;</em>, regardless of <code>Encode_Amp</code> flag</li>
+<li><code>"</code> and <code>'</code> will be replaced with <em>&#38;quot;</em> and <em>&#38;#039;</em>, if
+<code>Encode_Quotes</code> flag is enabled</li>
+<li><code>`</code> will <strong>not</strong> be <em>stripped</em>, regardless of <code>Strip_Backtick</code> flag</li>
+</ul>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$htmlStandard </td>
+                                <td><p>Modifies special chars encoding style in HTML way</p></td>
+                            </tr>
+                                            </table>
                 
                 
                 
@@ -637,7 +778,187 @@ be encoded.</p>
         </aside>
     </div>
 
-                                                                    </div>
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addSlashes" name="method_addSlashes" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addSlashes()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addSlashes() : string</pre>
+                <p><em>Add backslashes to special chars.</em></p>
+                <p>Backslashes are added to escape some special chars: <code>"</code>, <code>'</code>, <code>\</code> and <code>NUL</code>.</p>
+<p><code>Quotes</code> will <em>not</em> be encoded, regardless of <code>Encode_Quotes</code> flag,
+nor <code>&amp;</code>, regardless <code>Encode_Amp</code> flag.
+The same way, <code>`</code> will <em>not</em> be stripped, regardless of
+<code>Strip_Backtick</code> falg.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/LeoCor.Data.StringFilter.html"><div class="path-wrapper">\LeoCor\Data\StringFilter</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_sanitizeEmail" name="method_sanitizeEmail" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">sanitizeEmail()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">sanitizeEmail() : string</pre>
+                <p><em>Email sanitization.</em></p>
+                <p>Removes all characters except letters, digits and <code>!</code>, <code>#</code>, <code>$</code>, <code>%</code>,
+<code>&amp;</code>, <code>'</code>, <code>*</code>, <code>+</code>, <code>-</code>, <code>=</code>, <code>?</code>, <code>^</code>, <code>_</code>, <code>`</code>,
+<code>{</code>, <code>|</code>, <code>}</code>, <code>~</code>, <code>@</code>, <code>.</code>, <code>[</code>, <code>]</code>.</p>
+<p>Flag settings are ineffective.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/LeoCor.Data.StringFilter.html"><div class="path-wrapper">\LeoCor\Data\StringFilter</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_sanitizeUrl" name="method_sanitizeUrl" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">sanitizeUrl()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">sanitizeUrl() : string</pre>
+                <p><em>URL sanitization.</em></p>
+                <p>Removes all characters except letters, digits and <code>$</code>, <code>-</code>, <code>_</code>, <code>.</code>, <code>+</code>,
+<code>!</code>, <code>*</code>, <code>'</code>, <code>(</code>, <code>)</code>, <code>,</code>, <code>{</code>, <code>}</code>, <code>|</code>, <code>\</code>, <code>^</code>, <code>~</code>, <code>[</code>, <code>]</code>,
+<code>`</code>, <code>&lt;</code>, <code>&gt;</code>, <code>#</code>, <code>%</code>, <code>"</code>, <code>;</code>, <code>/</code>, <code>?</code>, <code>:</code>,
+<code>@</code>, <code>&amp;</code>, <code>=</code>.</p>
+<p>Flag settings are ineffective.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/LeoCor.Data.StringFilter.html"><div class="path-wrapper">\LeoCor\Data\StringFilter</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_urlEncode" name="method_urlEncode" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">urlEncode()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">urlEncode() : string</pre>
+                <p><em>URL encoding.</em></p>
+                <p>URL-encodes string.</p>
+<p>If <code>Strip_Backtick</code> flag is passed, backticks are stripped. Other flags are ineffective.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/LeoCor.Data.StringFilter.html"><div class="path-wrapper">\LeoCor\Data\StringFilter</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setFlag" name="method_setFlag" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">setFlag()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setFlag(boolean  <span class="argument">$flag</span>, integer  <span class="argument">$value</span>) : void</pre>
+                <p><em>Implements bitwise flag setting logic.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$flag </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$value </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/LeoCor.Data.StringFilter.html"><div class="path-wrapper">\LeoCor\Data\StringFilter</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            private
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    </div>
     </section>
 
     <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
@@ -646,7 +967,7 @@ be encoded.</p>
             <h3 id="source-view-label">StringFilter.php</h3>
         </div>
         <div class="modal-body">
-            <pre data-src="../files/StringFilter.php.txt" class="language-php line-numbers"></pre>
+            <pre data-src="../files/Data\StringFilter.php.txt" class="language-php line-numbers"></pre>
         </div>
     </div>
 
@@ -687,7 +1008,7 @@ be encoded.</p>
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on April 1st, 2019 at 14:23.
+                    on April 12th, 2019 at 10:21.
                 </section>
             </section>
         </section>

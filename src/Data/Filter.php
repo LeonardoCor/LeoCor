@@ -15,17 +15,33 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+/**
+ * Data filtering and validation.
+ */
 namespace LeoCor\Data;
 
 /**
  * Validation and sanitization of data.
+ * 
+ * Data has to be validated and sanitized, coming it from outside.
  *
  * @author Leonardo Corazzi <leonardo.corazzi@outlook.it>
  */
 abstract class Filter
 {
+    /**
+     * Data to be filtered.
+     * 
+     * @var mixed
+     */
     protected $data;
     
+    /**
+     * Constructor.
+     * 
+     * Data is passed in the filter and stays unaltered.
+     * @param mixed $data
+     */
     public function __construct($data)
     {
         $this->data = $data;
