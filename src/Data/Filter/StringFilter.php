@@ -18,7 +18,7 @@
 /**
  * String filtering and validation.
  */
-namespace LeoCor\Data;
+namespace LeoCor\Data\Filter;
 
 /**
  * Set of string filters.
@@ -217,8 +217,9 @@ class StringFilter extends Filter
      * - `<`, `>` will be replaced with _&#38;lt;_, _&#38;gt;_
      * - `&` will be replaced with _&#38;amp;_, regardless of `Encode_Amp` flag
      * - `"` and `'` will be replaced with _&#38;quot;_ and _&#38;#039;_, if
-     *   `Encode_Quotes` flag is enabled
-     * - `` ` `` will __not__ be _stripped_, regardless of `Strip_Backtick` flag
+     *   `Encode_Quotes` flag is enabled, otherwise they will _not_ be encoded
+     * - `` ` `` will __not__ be _stripped_, regardless of `Strip_Backtick` flag,
+     *   and anyway will _not_ be encoded
      * @param bool $htmlStandard Modifies special chars encoding style in HTML way
      */
     public function sanitizeHtmlSpecialChars(bool $htmlStandard = false)
@@ -250,22 +251,6 @@ class StringFilter extends Filter
     {
         $sanitized = filter_var($this->data, FILTER_SANITIZE_MAGIC_QUOTES);
         return $sanitized;
-    }
-    
-    /**
-     * Email sanitization.
-     * 
-     * Removes all characters except letters, digits and `!`, `#`, `$`, `%`,
-     * `&`, `'`, `*`, `+`, `-`, `=`, `?`, `^`, `_`, `` ` ``,
-     * `{`, `|`, `}`, `~`, `@`, `.`, `[`, `]`.
-     * 
-     * Flag settings are ineffective.
-     * @return string
-     */
-    public function sanitizeEmail()
-    {
-        $sanitized = filter_var($this->data, FILTER_SANITIZE_EMAIL);
-        return  $sanitized;
     }
     
     /**

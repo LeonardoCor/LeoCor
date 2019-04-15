@@ -18,7 +18,7 @@
 /**
  * Data filtering and validation.
  */
-namespace LeoCor\Data;
+namespace LeoCor\Data\Filter;
 
 /**
  * Validation and sanitization of data.

@@ -18,7 +18,14 @@
 namespace LeoCor\Data;
 
 /**
- * Description of DataUnit
+ * Data Unit represents a unique piece of data incoming from outside.
+ * 
+ * This class is meant to be used to sanitize and validate input data so that
+ * they can safely be used inside the system.
+ * 
+ * 
+ * More than the class itself, its descendants are useful for the purpose, given
+ * their specializations based on type of data and category.
  *
  * @author Leonardo Corazzi <leonardo.corazzi@outlook.it>
  */

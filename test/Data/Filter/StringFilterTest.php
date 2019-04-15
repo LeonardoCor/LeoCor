@@ -1,5 +1,5 @@
 <?php
-namespace LeoCor\Data;
+namespace LeoCor\Data\Filter;
 
 use PHPUnit\Framework\TestCase;
 
@@ -188,19 +188,6 @@ class StringFilterTest extends TestCase {
         $this->assertSame($expectedStr, $strFlt->addSlashes());
         $strFlt->setFlagStripBacktick(true);
         $this->assertSame($expectedStr, $strFlt->addSlashes());
-    }
-    
-    public function testSanitizeEmail()
-    {
-        $strFlt = new StringFilter("abc123DEF!#$%&'*+-=?^_`{|}~@.[]\"<>\\/:;,");
-        $expectedStr = "abc123DEF!#$%&'*+-=?^_`{|}~@.[]";
-        $this->assertSame($expectedStr, $strFlt->sanitizeEmail());
-        $strFlt->setFlagEncodeQuotes(true);
-        $this->assertSame($expectedStr, $strFlt->sanitizeEmail());
-        $strFlt->setFlagEncodeAmp(true);
-        $this->assertSame($expectedStr, $strFlt->sanitizeEmail());
-        $strFlt->setFlagStripBacktick(true);
-        $this->assertSame($expectedStr, $strFlt->sanitizeEmail());
     }
     
     public function testSanitizeUrl()
